@@ -1,17 +1,22 @@
-import { serve } from "https://deno.land/std@0.168.0/http/server.ts"
+import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
+// Standard Supabase CORS headers
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
 }
 
 const GEMINI_API_KEY = Deno.env.get('GEMINI_API_KEY')
-// Using v1beta for better JSON instruction following without strict config
-const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
+const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 
 serve(async (req) => {
-  if (req.method === 'OPTIONS') return new Response('ok', { headers: corsHeaders })
+  // 1. BULLETPROOF PREFLIGHT: Return 204 No Content
+  if (req.method === 'OPTIONS') {
+    return new Response(null, { 
+      status: 204, 
+      headers: corsHeaders 
+    })
+  }
 
   try {
     const { entityName, entityType } = await req.json()
@@ -36,7 +41,6 @@ serve(async (req) => {
           }`
         }]
       }]
-      // Removed generationConfig to bypass the "Unknown name" error
     }
 
     const response = await fetch(`${GEMINI_URL}?key=${GEMINI_API_KEY}`, {
@@ -51,20 +55,21 @@ serve(async (req) => {
     let rawContent = result.candidates?.[0]?.content?.parts?.[0]?.text
     if (!rawContent) throw new Error("Empty response from AI")
 
-    // Clean up potential markdown backticks if Gemini ignores instructions
-    rawContent = rawContent.replace(/```json|```/g, "").trim();
-    
+    rawContent = rawContent.replace(/```json|```/g, "").trim()
     const narasData = JSON.parse(rawContent)
 
+    // 2. SUCCESS RESPONSE (Must include CORS headers)
     return new Response(JSON.stringify(narasData), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 200,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
 
   } catch (error) {
+    console.error("Audit Error:", error.message)
+    // 3. ERROR RESPONSE (Must also include CORS headers)
     return new Response(JSON.stringify({ error: error.message }), {
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 400,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     })
   }
 })

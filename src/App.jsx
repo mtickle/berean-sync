@@ -11,21 +11,11 @@ function App() {
     <AuthProvider>
       <BrowserRouter basename="/berean-sync">
         <Routes>
-          {/* 1. Public Route: Authentication Gate */}
           <Route path="/login" element={<Login />} />
-
-          {/* 2. Protected Routes: Security Wrapper */}
           <Route element={<ProtectedRoute />}>
-
-            {/* 3. Layout Wrapper: Sidebar/Header/Footer Persistence */}
             <Route element={<Layout />}>
-
-              {/* THE ROOT: This renders AuditHistory at "/berean-sync/" */}
               <Route index element={<AuditHistory />} />
-
-              {/* THE ACTIONS: Other pages accessible within the layout */}
               <Route path="new-audit" element={<NewAudit />} />
-
               {/* Optional: Keep the explicit path if you want links 
             to "/audit-history" to work too 
           */}

@@ -28,7 +28,11 @@ export default function Login() {
     return (
         <div className="flex min-h-screen items-center justify-center bg-slate-900 p-4">
             <form onSubmit={handleLogin} className="w-full max-w-md rounded-xl bg-white p-8 shadow-2xl">
-                <h2 className="mb-6 text-2xl font-bold text-slate-800">Berean Sync Access</h2>
+                <h2 className="mb-6 text-2xl font-bold text-slate-800">The Berean Sync</h2>
+                <p className="mb-6 text-sm text-slate-500">
+                    "Now the Berean Jews were of more noble character than those in Thessalonica, for they received the message with great eagerness and examined the Scriptures every day to see if what Paul said was true.
+                    - Acts 17:11
+                </p>
                 <div className="space-y-4">
                     <input
                         type="email"
@@ -52,6 +56,6 @@ export default function Login() {
                     </button>
                 </div>
             </form>
-        </div>
+        </div >
     );
 }
