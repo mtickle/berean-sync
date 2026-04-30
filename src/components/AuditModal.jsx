@@ -36,6 +36,25 @@ export default function AuditModal({ isOpen, onClose, audit, onAuditDeleted }) {
         }
     };
 
+    // Helper to safely render notes whether the AI returned a string or an object
+    const renderNote = (note) => {
+        if (typeof note === 'string') return note;
+
+        // If the AI got creative and returned the {point, explanation} object
+        if (typeof note === 'object' && note !== null) {
+            if (note.point && note.explanation) {
+                return (
+                    <span>
+                        <strong className="text-gray-900">{note.point}:</strong> {note.explanation}
+                    </span>
+                );
+            }
+            // Fallback for any other weird object structure it might hallucinate
+            return JSON.stringify(note);
+        }
+        return "Invalid note format";
+    };
+
     return (
         <div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-60 backdrop-blur-sm"
@@ -94,7 +113,7 @@ export default function AuditModal({ isOpen, onClose, audit, onAuditDeleted }) {
                             {audit.association_notes?.details?.length > 0 ? (
                                 <ul className="list-disc pl-5 space-y-2 text-sm text-gray-700">
                                     {audit.association_notes.details.map((note, idx) => (
-                                        <li key={idx}>{note}</li>
+                                        <li key={idx}>{renderNote(note)}</li>
                                     ))}
                                 </ul>
                             ) : (
@@ -107,7 +126,7 @@ export default function AuditModal({ isOpen, onClose, audit, onAuditDeleted }) {
                             {audit.doctrinal_notes?.details?.length > 0 ? (
                                 <ul className="list-disc pl-5 space-y-2 text-sm text-gray-700">
                                     {audit.doctrinal_notes.details.map((note, idx) => (
-                                        <li key={idx}>{note}</li>
+                                        <li key={idx}>{renderNote(note)}</li>
                                     ))}
                                 </ul>
                             ) : (

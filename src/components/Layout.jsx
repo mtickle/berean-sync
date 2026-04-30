@@ -54,6 +54,7 @@ export default function Layout() {
                 <nav className="flex-1 px-4 space-y-1">
                     <Link to="/" onClick={closeMobileMenu} className="block py-2.5 px-4 rounded transition hover:bg-slate-800 hover:text-white">Dashboard</Link>
                     <Link to="/new-audit" onClick={closeMobileMenu} className="block py-2.5 px-4 rounded transition hover:bg-slate-800 hover:text-white">New Audit</Link>
+                    <Link to="/about" onClick={closeMobileMenu} className="block py-2.5 px-4 rounded transition hover:bg-slate-800 hover:text-white">About</Link>
                 </nav>
 
                 <div className="p-4 border-t border-slate-800">

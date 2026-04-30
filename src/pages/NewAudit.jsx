@@ -67,8 +67,7 @@ export default function NewAudit() {
                 <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50">
                     <div className="bg-white p-8 rounded-2xl shadow-xl flex flex-col items-center">
                         <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4"></div>
-                        <h3 className="text-lg font-bold text-slate-800">Initiating Berean Sync Audit</h3>
-                        <p className="text-sm text-slate-500 animate-pulse">Consulting theological markers...</p>
+                        <h3 className="text-lg font-bold text-slate-800">Initiating Audit ...</h3>
                     </div>
                 </div>
             )}
@@ -77,7 +76,7 @@ export default function NewAudit() {
                 <div>
                     <label className="block text-sm font-medium text-slate-700 mb-2">Entity Type</label>
                     <div className="flex gap-2">
-                        {['artist', 'label', 'song', 'lyrics'].map((t) => (
+                        {['artist', 'song', 'lyrics'].map((t) => (
                             <button
                                 key={t}
                                 type="button"
