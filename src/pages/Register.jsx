@@ -44,7 +44,7 @@ export default function Register() {
             setError(signUpError.message);
         } else {
             // 3. Success State
-            setMessage("Registration successful! Please check your email to confirm your identity before logging in.");
+            setMessage("Registration successful! Please wait ...");
             // Optional: Auto-redirect to login after 5 seconds
             setTimeout(() => navigate('/login'), 5000);
         }
@@ -78,7 +78,7 @@ export default function Register() {
 
                         <input
                             type="email"
-                            placeholder="Identity (Email)"
+                            placeholder="Email"
                             value={email}
                             className="w-full rounded-lg border border-slate-300 p-3 outline-none focus:ring-2 focus:ring-blue-500"
                             onChange={(e) => setEmail(e.target.value)}
@@ -87,7 +87,7 @@ export default function Register() {
 
                         <input
                             type="password"
-                            placeholder="Passkey"
+                            placeholder="Password"
                             value={password}
                             className="w-full rounded-lg border border-slate-300 p-3 outline-none focus:ring-2 focus:ring-blue-500"
                             onChange={(e) => setPassword(e.target.value)}
@@ -96,7 +96,7 @@ export default function Register() {
 
                         <input
                             type="password"
-                            placeholder="Confirm Passkey"
+                            placeholder="Confirm Password"
                             value={confirmPassword}
                             className="w-full rounded-lg border border-slate-300 p-3 outline-none focus:ring-2 focus:ring-blue-500"
                             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -112,7 +112,7 @@ export default function Register() {
 
                         <div className="text-center mt-4">
                             <Link to="/login" className="text-sm text-slate-500 hover:text-slate-800 transition">
-                                Already have an uplink? Return to Login.
+                                Already have an account? Return to Login.
                             </Link>
                         </div>
                     </form>
