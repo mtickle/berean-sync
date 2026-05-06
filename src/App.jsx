@@ -6,6 +6,7 @@ import Login from '@pages/Login';
 import NewAudit from '@pages/NewAudit';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import About from './pages/About';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <BrowserRouter basename="/berean-sync">
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route element={<ProtectedRoute />}>
             <Route element={<Layout />}>
               <Route index element={<AuditHistory />} />
