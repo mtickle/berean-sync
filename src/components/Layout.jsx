@@ -1,3 +1,4 @@
+import narwhalMascot from "@assets/narwhal-detective.png";
 import { supabase } from '@lib/supabaseClient';
 import { useEffect, useState } from 'react';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
@@ -53,11 +54,25 @@ export default function Layout() {
                 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
                 md:translate-x-0
             `}>
-                <div className="p-6 flex justify-between items-center">
-                    <div>
-                        <h1 className="text-xl font-bold text-white tracking-tight">Berean Sync</h1>
-                        <p className="text-xs text-slate-500 uppercase mt-1 tracking-widest">Discernment Portal</p>
+
+                <div className="p-6 flex justify-between items-center border-b border-slate-800/60">
+                    <div className="flex items-center gap-3">
+                        {/* MASCOT INTEGRATION */}
+                        <div className="bg-white rounded-full p-1 border border-slate-700 shrink-0 shadow-sm">
+                            <img
+                                src={narwhalMascot}
+                                alt="Berean Sync Mascot"
+                                className="w-10 h-10 object-contain"
+                            />
+                        </div>
+
+                        {/* BRANDING TEXT */}
+                        <div>
+                            <h1 className="text-lg font-bold text-white tracking-tight leading-none">Berean Sync</h1>
+                            <p className="text-[10px] text-slate-500 uppercase mt-1 tracking-widest font-semibold">Discernment Portal</p>
+                        </div>
                     </div>
+
                     <button
                         className="md:hidden text-slate-400 hover:text-white"
                         onClick={closeMobileMenu}

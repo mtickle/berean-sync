@@ -20,6 +20,12 @@ export default function About() {
                         Ancient Discernment, Modern Tech
                     </h2>
                     <div className="space-y-4 text-slate-600 leading-relaxed text-sm sm:text-base">
+                        <blockquote className="mb-6 border-l-4 border-slate-300 bg-slate-50 pl-4 py-3 italic text-slate-600 text-sm rounded-r-lg">
+                            "Now the Berean Jews were of more noble character than those in Thessalonica, for they received the message with great eagerness and examined the Scriptures every day to see if what Paul said was true."
+                            <br />
+                            <span className="font-semibold text-slate-500 mt-2 block">— Acts 17:11</span>
+                        </blockquote>
+
                         <p>
                             The name <strong>"Berean"</strong> is drawn directly from Acts 17:11. The believers in Berea were commended for their noble character because they received the message with great eagerness and examined the Scriptures every day to see if what was being taught was actually true. They did not accept claims blindly.
                         </p>

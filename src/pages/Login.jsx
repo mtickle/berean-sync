@@ -1,3 +1,4 @@
+import narwhalMascot from "@assets/narwhal-detective.png";
 import { supabase } from "@lib/supabaseClient";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -31,14 +32,16 @@ export default function Login() {
     return (
         <div className="flex min-h-screen items-center justify-center bg-slate-900 p-4">
             <div className="w-full max-w-md rounded-xl bg-white p-8 shadow-2xl">
-                <h2 className="mb-6 text-2xl font-bold text-slate-800">The Berean Sync</h2>
+                <img
+                    src={narwhalMascot}
+                    alt="NARWHAL AUDIT IN PROGRESS"
+                    // 1. Swapped object-contain for object-cover & set width to full
+                    className="w-full max-w-lg h-auto object-cover relative z-10"
+                />
+                <h2 className="mb-1 text-2xl font-bold text-slate-800">Welcome to the NARWall</h2>
+                <h2 className="mb-6 text-1xl font-bold text-slate-800">aka "The Berean Sync"</h2>
 
                 {/* Kept the polished blockquote styling */}
-                <blockquote className="mb-6 border-l-4 border-slate-300 bg-slate-50 pl-4 py-3 italic text-slate-600 text-sm rounded-r-lg">
-                    "Now the Berean Jews were of more noble character than those in Thessalonica, for they received the message with great eagerness and examined the Scriptures every day to see if what Paul said was true."
-                    <br />
-                    <span className="font-semibold text-slate-500 mt-2 block">— Acts 17:11</span>
-                </blockquote>
 
                 <form onSubmit={handleLogin} className="space-y-4">
                     <input
