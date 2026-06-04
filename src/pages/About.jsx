@@ -6,7 +6,7 @@ export default function About() {
 
             {/* Header Area */}
             <div>
-                <h1 className="text-3xl font-bold text-slate-900 tracking-tight">About Berean Sync</h1>
+                <h1 className="text-3xl font-bold text-slate-900 tracking-tight">About The NARWall, a.k.a. the Berean Sync</h1>
                 <p className="text-slate-500 mt-2">Theological discernment powered by modern data pipelines.</p>
             </div>
 
@@ -62,9 +62,21 @@ export default function About() {
                             for the actual values.
                         </p>
                         <blockquote className="border-l-4 border-slate-300 bg-slate-50 pl-4 py-3 italic text-slate-600 rounded-r-lg">
-                            You are a theological research assistant for Berean Sync.<br />
-                            Perform a high-precision audit on the musical "entityType": "entityName".<br />
-                            Analyze for NAR Associations, Doctrinal Markers, and Sources.<br />
+
+
+                            You are a theological research assistant for The NARWall (Berean Sync).<br />
+                            Perform a high-precision theological audit on the specific song: [songTitle] by the artist/group: [artistName].<br />
+
+                            Your objective is to identify if this song or its corporate origin links back to the New Apostolic Reformation (NAR),
+                            Word of Faith, or related structural movements.<br />
+
+                            Evaluate based on:<br />
+                            1. Known theological issues, phrasing, or scriptural distortion present within this track's official recording.<br />
+                            2. The direct publishing alignment, church origin (e.g., Bethel, Hillsong, Elevation, Jesus Culture), and known<br />
+                            collaborative networking circles of [artistName]<br />
+
+
+
                         </blockquote>
                     </div>
                 </section>
@@ -80,11 +92,9 @@ export default function About() {
                             <strong>Initiate a New Audit:</strong> Click the <Link to="/new-audit" className="text-blue-600 hover:underline font-medium">+ New Audit</Link> button in the top navigation bar to open the targeting form.
                         </li>
                         <li>
-                            <strong>Select the Entity Type:</strong> Tell the engine what it is looking at (Artist, Label, Song, or Lyrics).
+                            <strong>Provide Details:</strong> Enter the song name and artist.
                         </li>
-                        <li>
-                            <strong>Set the Target:</strong> Enter the name of the entity. If you want a hyper-specific doctrinal review, select the "Lyrics" tab and paste the exact song lyrics into the text area.
-                        </li>
+
                         <li>
                             <strong>Execute the Scan:</strong> Hit "Run New Audit." The system will display an analyzing screen while the Edge Function processes the request.
                         </li>

@@ -11,7 +11,7 @@ import Register from './pages/Register';
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter basename="/berean-sync">
+      <BrowserRouter basename="/narwall">
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

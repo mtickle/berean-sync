@@ -68,7 +68,7 @@ export default function Layout() {
 
                         {/* BRANDING TEXT */}
                         <div>
-                            <h1 className="text-lg font-bold text-white tracking-tight leading-none">Berean Sync</h1>
+                            <h1 className="text-lg font-bold text-white tracking-tight leading-none">The NARWall</h1>
                             <p className="text-[10px] text-slate-500 uppercase mt-1 tracking-widest font-semibold">Discernment Portal</p>
                         </div>
                     </div>
