@@ -9,8 +9,8 @@ const corsHeaders = {
 const GEMINI_API_KEY = Deno.env.get('GEMINI_API_KEY')
 // Note: Using Gemini 2.0 Flash as 2.5 is not yet a standard endpoint in mid-2026 production, 
 // but the logic remains identical for your targeted model.
-const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
-
+//const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent";
+const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 serve(async (req) => {
   // 1. BULLETPROOF PREFLIGHT: Return 204 No Content
   if (req.method === 'OPTIONS') {
@@ -20,34 +20,52 @@ serve(async (req) => {
     })
   }
 
-  try {
-    const { entityName, entityType } = await req.json()
+try {
+  // 1. EXTRACT THE CORRECT KEYS FROM FRONTEND
+  const { songTitle, artistName } = await req.json()
 
-    if (!GEMINI_API_KEY) {
-      throw new Error("Missing GEMINI_API_KEY secret in Supabase Dashboard.");
-    }
+  // Guard against blank entries reaching the AI
+  if (!songTitle || !artistName) {
+    return new Response(JSON.stringify({ error: "Song Title and Artist Name are required parameters." }), {
+      status: 400,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    })
+  }
 
-    const prompt = {
-      contents: [{
-        parts: [{
-          text: `You are a theological research assistant for Berean Sync. 
-          Perform a high-precision audit on the musical ${entityType}: "${entityName}".
-          
-          Analyze for NAR Associations, Doctrinal Markers, and Sources.
+  if (!GEMINI_API_KEY) {
+    throw new Error("Missing GEMINI_API_KEY secret in Supabase Dashboard.");
+  }
 
-          CRITICAL: RETURN ONLY A PURE JSON OBJECT. NO MARKDOWN, NO BACKTICKS.
-          Structure:
-          {
-            "verdict": "Green" | "Amber" | "Red",
-            "confidence_score": 85,
-            "association_notes": { "details": [] },
-            "doctrinal_notes": { "details": [] },
-            "summary": "Summary text",
-            "sources": []
-          }`
-        }]
+  // 2. PASS COMPREHENSIVE TEXT TARGETS INTO THE BRAIN
+  const prompt = {
+    contents: [{
+      parts: [{
+        text: `You are a theological research assistant for Berean Sync. 
+        Perform a high-precision theological audit on the specific song: "${songTitle}" by the artist/group: "${artistName}".
+        
+        Your objective is to identify if this song or its corporate origin links back to the New Apostolic Reformation (NAR), Word of Faith, or related structural movements.
+        
+        Evaluate based on:
+        1. Known theological issues, phrasing, or scriptural distortion present within this track's official recording.
+        2. The direct publishing alignment, church origin (e.g., Bethel, Hillsong, Elevation, Jesus Culture), and known collaborative networking circles of "${artistName}".
+
+        CRITICAL: RETURN ONLY A PURE JSON OBJECT. NO MARKDOWN, NO BACKTICKS.
+        Structure:
+        {
+          "verdict": "Green" | "Amber" | "Red",
+          "confidence_score": 85,
+          "association_notes": { "details": ["Detail 1", "Detail 2"] },
+          "doctrinal_notes": { "details": ["Detail 1", "Detail 2"] },
+          "summary": "A concise theological summary detailing why this score was designated.",
+          "sources": ["Source 1", "Source 2"]
+        }`
       }]
-    }
+    }]
+  }
+
+  // ... fetch call and JSON regex cleaner logic follows below identically ...
+
+
 
     const response = await fetch(`${GEMINI_URL}?key=${GEMINI_API_KEY}`, {
       method: 'POST',
