@@ -121,7 +121,7 @@ export default function Layout() {
                         >
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
                         </button>
-                        <span className="md:hidden font-bold text-slate-800">Berean Sync</span>
+                        <span className="md:hidden font-bold text-slate-800">The NARWall</span>
                     </div>
 
                     <div className="flex items-center gap-4">
@@ -139,7 +139,7 @@ export default function Layout() {
 
                 {/* Footer */}
                 <footer className="h-10 bg-white border-t border-slate-200 flex items-center justify-center px-4 text-[9px] sm:text-[10px] text-slate-400 uppercase tracking-widest text-center shrink-0">
-                    Berean Sync © 2026 // Authorized Personnel Only
+                    The NARWall © 2026 // Authorized Personnel Only
                 </footer>
             </div>
         </div>

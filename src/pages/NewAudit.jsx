@@ -53,7 +53,7 @@ export default function NewAudit() {
 
     return (
         <div className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-sm border border-slate-200 mt-10">
-            <h2 className="text-xl font-bold text-slate-800 mb-6">New Berean Sync Audit</h2>
+            <h2 className="text-xl font-bold text-slate-800 mb-6">New Audit</h2>
 
             {isAnalyzing && (
                 <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50">

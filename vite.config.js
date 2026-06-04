@@ -13,23 +13,25 @@ export default defineConfig({
       registerType: 'autoUpdate', // Automatically updates the app when you push new code
       includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
       manifest: {
-        name: 'Berean Sync Audit',
-        short_name: 'Berean Sync',
+        name: 'The NARWall',
+        short_name: 'The NARWall',
+        id: '/',
         description: 'AI-Powered Theological Music Vetting',
         theme_color: '#2563eb', // Matches your blue buttons
         background_color: '#ffffff',
         display: 'standalone', // This hides the browser URL bar to make it look like a native app!
         icons: [
           {
-            src: '/pwa-192x192.png',
+            src: '/narwall/pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png',
-            purpose: 'any maskable'
+            purpose: 'any' // Changed this to just 'any' to satisfy Chrome's error!
           },
           {
-            src: '/pwa-512x512.png',
+            src: '/narwall/pwa-512x512.png',
             sizes: '512x512',
-            type: 'image/png'
+            type: 'image/png',
+            purpose: 'maskable'
           }
         ]
       }
