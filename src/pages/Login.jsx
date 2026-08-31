@@ -39,7 +39,6 @@ export default function Login() {
                     className="w-full max-w-lg h-auto object-cover relative z-10"
                 />
                 <h2 className="mb-1 text-2xl font-bold text-slate-800">Welcome to the NARWall</h2>
-                <h2 className="mb-6 text-1xl font-bold text-slate-800">aka "The Berean Sync"</h2>
 
                 {/* Kept the polished blockquote styling */}
 
@@ -74,6 +73,9 @@ export default function Login() {
                         <Link to="/register" className="text-sm text-slate-500 hover:text-slate-800 transition">
                             No active credentials? Request access here.
                         </Link>
+                        <p className="mt-2 text-xs text-slate-400">
+                            The NARWall is a product of The Aletheum Project.
+                        </p>
                     </div>
                 </form>
             </div>
